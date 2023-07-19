@@ -49,7 +49,7 @@ app.post("/login",async(req,res)=>{
 })
 
 sequelize.sync().then(()=>{
-    app.listen(process.env.PORT, ()=>{
+    app.listen(3001, ()=>{
         console.log("Server is listining")
     })
 })
