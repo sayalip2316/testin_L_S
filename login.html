@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+</head>
+<body>
+    <div id="container">
+        <h2>Hello user please Login here</h2>
+        <input type="text" id="email" placeholder="Enter your email here...">
+        <input type="password" id="password" placeholder="Enter your password here...">
+        <button onclick="onLogin()">Login</button>
+    </div>
+</body>
+</html>
+<script>
+   const emailEl=document.getElementById("email")
+   const passwordEl=document.getElementById("password")
+
+   const onLogin=()=>{
+    const payload={
+        email:emailEl.value,
+        password:passwordEl.value,
+    }
+    fetch("https://unusual-clam-teddy.cyclic.app/login",{
+        method:"POST",
+        headers:{
+            "Content-type":"application/json"
+        },
+        body:JSON.stringify(payload)
+    }).then(res=>res.json())
+    .then((res)=>{
+        console.log(res)
+        localStorage.setItem("token",res.token)
+        alert(res.msg)
+    })
+   }
+</script>

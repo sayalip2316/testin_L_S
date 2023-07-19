@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup</title>
+</head>
+<body>
+    <div id="container">
+        <h2>Hello user please register here</h2>
+        <input type="text" id="name" placeholder="Enter your name here...">
+        <input type="text" id="email" placeholder="Enter your email here...">
+        <input type="password" id="password" placeholder="Enter your password here...">
+        <button onclick="onSignup()">Sign Up</button>
+    </div>
+</body>
+</html>
+<script>
+   const nameEl=document.getElementById("name") 
+   const emailEl=document.getElementById("email")
+   const passwordEl=document.getElementById("password")
+  
+   const onSignup=()=>{
+    const payload={
+        name:nameEl.value,
+        email:emailEl.value,
+        password:passwordEl.value
+    }
+    fetch("https://unusual-clam-teddy.cyclic.app/register",{
+        method:"POST",
+        headers:{
+            "Content-type":"application/json"
+        },
+        body:JSON.stringify(payload)
+    }).then(res=>res.json())
+    .then((res)=>{
+        console.log(res)
+        alert(res.msg)
+        window.location.href="login.html"
+    })
+   }
+</script>
